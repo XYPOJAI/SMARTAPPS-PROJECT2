@@ -5,10 +5,10 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   Avatar,
   Box,
+  Button,
   Heading,
   HStack,
   Icon,
-  NativeBaseProvider,
   Pressable,
   Text,
 } from "native-base";
@@ -42,14 +42,14 @@ function Staff() {
     }
   }, [route.params]);
   return (
-    <NativeBaseProvider>
-      <Box textAlign="center" bg="white" flex={1} safeAreaTop>
-        <Heading my={6} textAlign="center" size="lg">
-          Staff list
-        </Heading>
-        {/* <Basic /> */}
-      </Box>
-    </NativeBaseProvider>
+    <Box textAlign="center" bg="white" flex={1} safeAreaTop>
+      <Heading my={6} textAlign="center" size="lg">
+        Staff list
+      </Heading>
+      <Button onPress={() => navigation.navigate("Home")}>Home</Button>
+
+      {/* <Basic /> */}
+    </Box>
   );
 }
 

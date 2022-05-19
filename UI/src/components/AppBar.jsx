@@ -1,15 +1,58 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import { Box, HStack, Icon, IconButton, StatusBar, Text } from "native-base";
-import React from "react";
-export default function AppBar(props) {
-  const iconSize = ["lg"];
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { getHeaderTitle } from "@react-navigation/elements";
+import {
+  Box,
+  HStack,
+  Icon,
+  IconButton,
+  StatusBar,
+  Text,
+  useColorModeValue,
+} from "native-base";
+import React, { useState } from "react";
+import { getColor } from "./../theme";
+import SearchModal from "./SearchModal";
+const TitleIconButton = (props) => {
+  return (
+    <IconButton
+      icon={
+        <Icon
+          as={props.as || MaterialIcons}
+          name={props.name}
+          size={props.iconSize || "lg"}
+          color={props.color || "white"}
+        />
+      }
+      _hover={
+        props._hover || {
+          bg: "orange.600:alpha.20",
+        }
+      }
+      _pressed={
+        props._pressed || {
+          bg: "orange.600:alpha.20",
+        }
+      }
+      onPress={props.onPress}
+    />
+  );
+};
 
+export default function AppBar(props) {
+  const toggleColorMode = props.colorModeToggle;
+
+  const [showModal, setShowModal] = useState(false);
+
+  const iconSize = ["lg"];
+  // navigation = props.navigation;
   return (
     <>
-      <StatusBar bg="#3700B3" barStyle="light-content" />
-      <Box safeAreaTop bg="#6200ee" />
+      <StatusBar bg="#fff" barStyle="light-content" />
+      <Box safeAreaTop bg="#fff" />
       <HStack
-        bg="#7e211f"
+        // bg={props.headerStyle.backgroundColor}
+        _dark={{ bg: getColor("title_dark") }}
+        _light={{ bg: getColor("title_light") }}
         // px="1"
         // py="3"
         justifyContent="space-between"
@@ -20,53 +63,34 @@ export default function AppBar(props) {
         // maxW="350"
       >
         <HStack alignItems="center">
-          <IconButton
-            icon={
-              <Icon
-                size={iconSize}
-                as={MaterialIcons}
-                name="menu"
-                color="white"
-              />
-            }
+          <TitleIconButton
+            name="menu"
+            onPress={() => props.navigation.openDrawer()}
           />
-          <Text color="white" fontSize="20" fontWeight="bold">
-            {props.children}
+          <Text color="white" fontSize="20">
+            {getHeaderTitle(props.options, props.route.name)}
           </Text>
         </HStack>
         <HStack>
-          <IconButton
-            icon={
-              <Icon
-                as={MaterialIcons}
-                name="favorite"
-                size={iconSize}
-                color="white"
-              />
-            }
+          <TitleIconButton
+            as={Ionicons}
+            name={useColorModeValue("sunny", "sunny-outline")}
+            // name={useColorModeValue("sunny-outline", "sunny")}
+
+            // _dark={{ name: "sunny-outline" }}
+            // _light={{ name: "sunny" }}
+
+            //wb-sunny weather-sunny //md-sunny md-sunny-outline md-sunny-sharp
+            onPress={toggleColorMode}
           />
-          <IconButton
-            icon={
-              <Icon
-                as={MaterialIcons}
-                name="search"
-                size={iconSize}
-                color="white"
-              />
-            }
-          />
-          <IconButton
-            icon={
-              <Icon
-                as={MaterialIcons}
-                name="more-vert"
-                size={iconSize}
-                color="white"
-              />
-            }
+          <TitleIconButton name="search" onPress={() => setShowModal(true)} />
+          <TitleIconButton
+            name="more-vert"
+            // onPress={}
           />
         </HStack>
       </HStack>
+      <SearchModal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 }

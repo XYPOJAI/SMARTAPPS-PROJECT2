@@ -6,7 +6,7 @@ import ToggleDarkMode from "../components/ToggleDarkMode";
 import { getColor } from "../theme";
 // import RoiIcon from "./../components/Icon/Icon";
 
-export default function Home(props) {
+export default function Settings(props) {
   const navigation = useNavigation();
 
   return (
@@ -19,8 +19,8 @@ export default function Home(props) {
       w="100%"
       safeArea
     >
-      <BadIcon my={3} />
-      <VStack space={3} alignItems="center" size="100%">
+      <VStack space={5} alignItems="center" size="100%">
+        <BadIcon />
         {/* <RoiIcon /> */}
         <Heading fontSize={["2xl", "3xl", "4xl"]} fontWeight="bold">
           ROI Staff Manager
@@ -48,7 +48,6 @@ export default function Home(props) {
             Learn NativeBase
           </Text>
         </Link> */}
-        <Button onPress={() => navigation.navigate("Create")}>Create</Button>
         <Button onPress={() => navigation.navigate("Staff")}>Staff</Button>
         <Button onPress={() => navigation.navigate("Details")}>Details</Button>
 
@@ -57,6 +56,7 @@ export default function Home(props) {
           isLoadingText="Loading staff"
           variant="outline"
         ></Button>
+        <ToggleDarkMode />
       </VStack>
     </Center>
   );
