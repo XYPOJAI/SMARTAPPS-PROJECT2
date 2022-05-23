@@ -15,7 +15,6 @@ function BadIcon(props) {
         alt="ROI logo"
         w="100%"
         h="100%"
-        my={props.my}
       />
     </Center>
   );

@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import storage from "node-persist";
 import { v4 as uuidv4 } from "uuid";
 import IProfile from "../types/IProfile";
-import { profileSchema } from "./validate";
-const Joi = require("joi");
+// import { profileSchema } from "./validate";
+// const Joi = require("joi");
 
 const express = require("express");
 const router = express.Router();
@@ -23,14 +23,14 @@ const router = express.Router();
       created: new Date(),
       updated: new Date(),
     };
-    const { error, value } = await profileSchema.validate(profile, {
-      abortEarly: false,
-    });
-    if (error)
-      return res.status(400).json({
-        value: value,
-        errors: error.details.map((json: any) => json.message),
-      });
+    // const { error, value } = await profileSchema.validate(profile, {
+    //   abortEarly: false,
+    // });
+    // if (error)
+    //   return res.status(400).json({
+    //     value: value,
+    //     errors: error.details.map((json: any) => json.message),
+    //   });
     const save = await storage.setItem(profile.id, profile);
     res.status(201).json(save.content.value);
   });

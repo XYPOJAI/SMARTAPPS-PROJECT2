@@ -8,7 +8,7 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <NativeBaseProvider theme={theme}>
+        <NativeBaseProvider theme={theme} bg="red">
           <ScreenNavigator />
         </NativeBaseProvider>
       </NavigationContainer>

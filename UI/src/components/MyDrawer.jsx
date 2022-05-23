@@ -7,10 +7,10 @@ import {
   Icon,
   Pressable,
   Text,
+  useColorModeValue,
   VStack,
 } from "native-base";
 import * as React from "react";
-
 
 const getIcon = (screenName) => {
   switch (screenName) {
@@ -44,21 +44,21 @@ function DrawerContent(props) {
       //     ? "rgba(6, 182, 212, 0.1)"
       //     : "transparent"
       // }
-      bg="#262626"
+      bg={useColorModeValue("ROI.White", "ROI.MidGrey")}
       onPress={(event) => {
         props.navigation.navigate(props.name);
       }}
     >
       <HStack space="7" alignItems="center">
         <Icon
-          color="#D9D9D9"
+          color={useColorModeValue("ROI.MidGrey", "ROI.White")}
           // color={props.index === props.state.index ? "primary.500" : "gray.500"}
           size="5"
           as={<MaterialCommunityIcons name={getIcon(props.name)} />}
         />
         <Text
           fontWeight="500"
-          color="#D9D9D9"
+          color={useColorModeValue("ROI.MidGrey", "ROI.White")}
           // color={props.index === props.state.index ? "primary.500" : "gray.700"}
         >
           {props.name}
@@ -71,23 +71,24 @@ function DrawerContent(props) {
 export default function MyDrawer(props) {
   return (
     // <Box bg={"#3b3b3b"} h="100%">
-      <DrawerContentScrollView {...props}>
-        <VStack divider={<Divider />} space="4" my="2" mx="1">
-          <Box px="4">
-            <Text bold color="D9D9D9">
-              HR Manager
-            </Text>
-            <Text fontSize="14" mt="1" color="D9D9D9" fontWeight="500">
-              Staff Details Management
-            </Text>
-          </Box>
-          <VStack
-            divider={<Divider />}
-            space="4"
-            justifyContent="space-between"
+    <DrawerContentScrollView {...props}>
+      <VStack divider={<Divider />} space="4" my="2" mx="1">
+        <Box px="4">
+          <Text bold color={useColorModeValue("ROI.MidGrey", "ROI.White")}>
+            HR Manager
+          </Text>
+          <Text
+            fontSize="14"
+            mt="1"
+            color={useColorModeValue("ROI.MidGrey", "ROI.White")}
+            fontWeight="500"
           >
-            <VStack space="3">
-              {/* {console.log(props.state.routeNames.map((name, index) => name))}
+            Staff Details Management
+          </Text>
+        </Box>
+        <VStack divider={<Divider />} space="4" justifyContent="space-between">
+          <VStack space="3">
+            {/* {console.log(props.state.routeNames.map((name, index) => name))}
             {props.state.routeNames.map((name, index) => {
               // if (name == "Settings") return;
               return (
@@ -99,16 +100,16 @@ export default function MyDrawer(props) {
                 />
               );
             })} */}
-              {<DrawerContent {...props} name={"Home"} index={1} />}
-              {<DrawerContent {...props} name={"Staff"} index={2} />}
-              {<DrawerContent {...props} name={"Create"} index={3} />}
-            </VStack>
-            <VStack>
-              {<DrawerContent {...props} name={"Settings"} index={4} />}
-            </VStack>
+            {<DrawerContent {...props} name={"Home"} index={1} />}
+            {<DrawerContent {...props} name={"Staff"} index={2} />}
+            {<DrawerContent {...props} name={"Create"} index={3} />}
+          </VStack>
+          <VStack>
+            {<DrawerContent {...props} name={"Settings"} index={4} />}
           </VStack>
         </VStack>
-      </DrawerContentScrollView>
+      </VStack>
+    </DrawerContentScrollView>
     // </Box>
   );
 }

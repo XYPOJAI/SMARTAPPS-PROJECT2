@@ -8,11 +8,12 @@ import {
   StatusBar,
   Text,
   useColorModeValue,
+  useTheme,
 } from "native-base";
 import React, { useState } from "react";
-import { getColor } from "./../theme";
 import SearchModal from "./SearchModal";
 const TitleIconButton = (props) => {
+  const { colors } = useTheme();
   return (
     <IconButton
       icon={
@@ -25,12 +26,12 @@ const TitleIconButton = (props) => {
       }
       _hover={
         props._hover || {
-          bg: "orange.600:alpha.20",
+          bg: useColorModeValue("ROI.BurntOrange", "ROI.Charcoal"),
         }
       }
       _pressed={
         props._pressed || {
-          bg: "orange.600:alpha.20",
+          bg: useColorModeValue("ROI.BurntOrange", "ROI.Charcoal"),
         }
       }
       onPress={props.onPress}
@@ -51,8 +52,8 @@ export default function AppBar(props) {
       <Box safeAreaTop bg="#fff" />
       <HStack
         // bg={props.headerStyle.backgroundColor}
-        _dark={{ bg: getColor("title_dark") }}
-        _light={{ bg: getColor("title_light") }}
+        _dark={{ bg: "ROI.MidGrey" }}
+        _light={{ bg: "ROI.RealRed" }}
         // px="1"
         // py="3"
         justifyContent="space-between"

@@ -7,7 +7,8 @@ export interface IAddress {
 }
 export default interface IProfile {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   phone?: string;
   department?: string;
   address?: IAddress;

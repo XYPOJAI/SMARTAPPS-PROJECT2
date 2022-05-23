@@ -1,58 +1,95 @@
 // import { useNavigation, useTheme } from "@react-navigation/native";
 // import { Center, Heading, ScrollView, VStack } from "native-base";
-import { MaterialIcons } from "@native-base/icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
-  Avatar,
-  Box,
   Button,
+  Center,
+  FlatList,
   Heading,
-  HStack,
-  Icon,
-  Pressable,
   Text,
+  useColorModeValue,
 } from "native-base";
 import React, { useEffect, useState } from "react";
-import { SwipeListView } from "react-native-swipe-list-view";
-import Ionicons from "./../../node_modules/@expo/vector-icons/Ionicons.d";
+import Profile from "./../components/Profile";
+import { getProfilesAsync } from "./../users.service";
 
-function Staff() {
+export default function Staff() {
   // Navigation
   const navigation = useNavigation();
   const route = useRoute();
 
   // State
   const [profiles, setProfiles] = useState([]);
-
+  // getProfilesAsync().then((json) => setProfiles(json));
   // Effect
   useEffect(() => {
     switch (route.params?.op) {
-      case "undefined":
+      case undefined:
         // get profiles
+        getProfilesAsync().then((json) => setProfiles(json));
         break;
       case "create":
         // setProfiles to current profiles
+        setProfiles([...profiles, route.params.data]);
         break;
       case "update":
         // setProfiles to current profiles
+        setProfiles(
+          profiles.map((u) =>
+            u.id == route.params.data.id ? route.params.data : u
+          )
+        );
         break;
       case "delete":
         // setProfiles to current profiles
+        setProfiles(profiles.filter((u) => u.id !== route.params.id));
         break;
     }
   }, [route.params]);
   return (
-    <Box textAlign="center" bg="white" flex={1} safeAreaTop>
+    <Center
+      bg={useColorModeValue("#D9D9D9", "#595959")}
+      px={4}
+      flex={1}
+      minW={250}
+      w="100%"
+      safeArea
+    >
       <Heading my={6} textAlign="center" size="lg">
         Staff list
       </Heading>
-      <Button onPress={() => navigation.navigate("Home")}>Home</Button>
-
-      {/* <Basic /> */}
-    </Box>
+      {!profiles.length ? <Text>No profiles found</Text> : <></>}
+      <FlatList
+        w="70%"
+        data={profiles}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <Profile profile={item} />}
+      />
+      <Button.Group w="70%" my={2}>
+        <Button
+          w="50%"
+          onPress={() => navigation.navigate("Create")}
+          bg="ROI.LightOrange"
+          _hover={{ bg: "ROI.BurntOrange" }}
+          _pressed={{ bg: "ROI.BurntOrange" }}
+        >
+          Create Profile
+        </Button>
+        <Button
+          w="50%"
+          onPress={() => navigation.navigate("Home")}
+          bg="ROI.LightOrange"
+          _hover={{ bg: "ROI.BurntOrange" }}
+          _pressed={{ bg: "ROI.BurntOrange" }}
+        >
+          Home
+        </Button>
+      </Button.Group>
+    </Center>
   );
 }
-
+{
+  /* 
 function Basic() {
   const [listData, setListData] = useState(
     Array(20)
@@ -155,4 +192,5 @@ function Basic() {
   );
 }
 
-export default Staff;
+export default Staff; */
+}
