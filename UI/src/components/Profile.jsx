@@ -58,6 +58,15 @@ export default function Profile({ profile }) {
   return (
     <Box w="100%" borderColor="black" borderWidth="1px" borderRadius={10}>
       <Pressable
+        _light={{
+          _hover: { bg: "ROI.BurntOrange" },
+          _pressed: { bg: "ROI.BurntOrange" },
+        }}
+        _dark={{
+          _hover: { bg: "ROI.BurntOrange" },
+          _pressed: { bg: "ROI.BurntOrange" },
+        }}
+        borderRadius={10}
         onPress={() => navigation.navigate("Details", profile)}
         // _dark={{
         //   bg: "coolGray.800",

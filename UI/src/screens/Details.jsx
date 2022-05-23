@@ -69,7 +69,6 @@ export default function Details() {
       // flex={1}
       // minW={250}
       w="100%"
-      h="100%"
       safeArea
     >
       <Formik

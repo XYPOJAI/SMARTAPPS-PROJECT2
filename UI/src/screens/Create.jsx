@@ -31,23 +31,6 @@ const validate = (values) => {
   return errors;
 };
 
-const clearValues = (values) => {
-  return (values = {
-    id: "",
-    firstName: "",
-    lastName: "",
-    phone: "",
-    department: "",
-    address: {
-      street: "",
-      city: "",
-      state: "",
-      ZIP: "",
-      country: "",
-    },
-  });
-};
-
 const FormInput = (props) => {
   return (
     <Input
@@ -108,7 +91,7 @@ export default function Create() {
       // flex={1}
       // minW={250}
       w="100%"
-      h="100%"
+      // h="100%"
       safeArea
     >
       <Formik

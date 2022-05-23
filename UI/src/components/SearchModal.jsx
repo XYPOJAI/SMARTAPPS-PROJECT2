@@ -1,8 +1,29 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Button, Center, Icon, Input, Modal } from "native-base";
-// import { useState } from "react";
+import { useState } from "react";
+import { getProfilesAsync } from "./../users.service";
 
 export default function SearchModal({ showModal, setShowModal }) {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const [input, setInput] = useState();
+  const [profiles, setProfiles] = useState([]);
+  getProfilesAsync().then((json) => setProfiles(json));
+
+  function search() {
+    let profile = profiles.find(
+      (p) => p.firstName.toLowerCase() == input.toLowerCase()
+    );
+    if (profile == undefined) {
+      // error not found
+      return;
+    }
+    setShowModal(false);
+    navigation.navigate("Details", profile);
+  }
+  // State
+
   return (
     <Center>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
@@ -26,6 +47,7 @@ export default function SearchModal({ showModal, setShowModal }) {
                   as={<MaterialIcons name="search" />}
                 />
               }
+              onChangeText={(input) => setInput(input)}
             />
           </Modal.Body>
           <Modal.Footer>
@@ -41,7 +63,7 @@ export default function SearchModal({ showModal, setShowModal }) {
               </Button>
               <Button
                 onPress={() => {
-                  setShowModal(false);
+                  search();
                 }}
               >
                 Search
