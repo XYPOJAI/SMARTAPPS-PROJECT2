@@ -75,7 +75,7 @@ export default function Edit() {
     console.log(JSON.stringify(data));
     console.log("submitting with ", data);
     updateProfileAsync(data).then((json) => {
-      let params = { op: "update", data: json };
+      let params = { op: "update", data: data };
       navigation.navigate("Staff", params);
     });
     // Add toasts

@@ -30,6 +30,7 @@ export default function Staff() {
         break;
       case "create":
         // setProfiles to current profiles
+        console.log("loading with ", route.params.data);
         setProfiles([...profiles, route.params.data]);
         break;
       case "update":

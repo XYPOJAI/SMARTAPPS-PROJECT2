@@ -1,7 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Button, Center, Icon, Input, Modal } from "native-base";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getProfilesAsync } from "./../users.service";
 
 export default function SearchModal({ showModal, setShowModal }) {
@@ -9,7 +9,9 @@ export default function SearchModal({ showModal, setShowModal }) {
   const route = useRoute();
   const [input, setInput] = useState();
   const [profiles, setProfiles] = useState([]);
-  getProfilesAsync().then((json) => setProfiles(json));
+  useEffect(() => {
+    getProfilesAsync().then((json) => setProfiles(json));
+  }, [showModal]);
 
   function search() {
     let profile = profiles.find(

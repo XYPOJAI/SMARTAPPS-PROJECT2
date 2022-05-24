@@ -16,7 +16,7 @@ import { createProfileAsync } from "../users.service";
 
 const validate = (values) => {
   const errors = {};
-  !values.id && (errors.id = "Required");
+  // !values.id && (errors.id = "Required");
   !values.firstName && (errors.firstName = "Required");
   !values.lastName && (errors.lastName = "Required");
   !values.phone && (errors.phone = "Required");
@@ -74,6 +74,7 @@ export default function Create() {
     console.log(JSON.stringify(data));
     console.log("submitting with ", data);
     await createProfileAsync(data);
+    return { op: "create", data: data };
     // Add toasts
     // if (!toast.isActive(id)) {
     //   toast.show({
@@ -259,12 +260,12 @@ export default function Create() {
                     _pressed={{ bg: "ROI.BurntOrange" }}
                     type="submit"
                     onPress={async () => {
-                      let data = onSubmit(values);
+                      let params = await onSubmit(values);
                       // await handleSubmit();
                       // values = clearValues(values);
                       handleReset();
 
-                      navigation.navigate("Staff", { data });
+                      navigation.navigate("Staff", params);
                     }}
                   >
                     Submit

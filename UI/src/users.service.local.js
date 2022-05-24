@@ -1,5 +1,5 @@
 export function getProfilesAsync() {
-  return fetch("https://enigmatic-ocean-67483.herokuapp.com/profiles")
+  return fetch("http://localhost:3000/profiles")
     .then((response) => response.json())
     .catch((e) => console.error(e));
 }
@@ -11,7 +11,7 @@ export function createProfileAsync(data) {
     body: JSON.stringify(data),
   };
 
-  return fetch("https://enigmatic-ocean-67483.herokuapp.com/profiles", config)
+  return fetch("http://localhost:3000/profiles", config)
     .then((response) => response.json())
     .catch((e) => console.error(e));
 }
@@ -23,7 +23,7 @@ export function updateProfileAsync(data) {
     body: JSON.stringify(data),
   };
 
-  return fetch("https://enigmatic-ocean-67483.herokuapp.com/profiles", config)
+  return fetch("http://localhost:3000/profiles", config)
     .then((response) => response.json())
     .catch((e) => console.error(e));
 }
@@ -35,13 +35,13 @@ export function deleteProfileAsync(data) {
     body: JSON.stringify(data),
   };
 
-  return fetch("https://enigmatic-ocean-67483.herokuapp.com/profiles", config)
+  return fetch("http://localhost:3000/profiles", config)
     .then((response) => response.json())
     .catch((e) => console.error(e));
 }
 
 export function deleteProfilesAsyncById(id) {
-  return fetch(`https://enigmatic-ocean-67483.herokuapp.com/profiles/${id}`, {
+  return fetch(`http://localhost:3000/profiles/${id}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
