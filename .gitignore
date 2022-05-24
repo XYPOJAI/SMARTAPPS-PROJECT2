@@ -16,3 +16,5 @@ web-build/
 
 /UI-TS/
 /.UI-TS/
+# Local Netlify folder
+.netlify

@@ -87,7 +87,7 @@ export default function Home(props) {
           Create new profile
         </Button>
         <Button
-          // isDisabled
+          isDisabled
           bg="ROI.LightOrange"
           _hover={{ bg: "ROI.BurntOrange" }}
           _pressed={{ bg: "ROI.BurntOrange" }}
@@ -96,11 +96,11 @@ export default function Home(props) {
           Settings
         </Button>
 
-        <Button
+        {/* <Button
           isLoading
           isLoadingText="Loading staff"
           variant="outline"
-        ></Button>
+        ></Button> */}
       </VStack>
     </Center>
     //   </ScrollView>
