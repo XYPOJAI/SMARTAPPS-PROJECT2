@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "backgroundColor": "#000000"
@@ -29,7 +27,7 @@
       "package": "com.xypo.ROI"
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/favicon-16x16.png",
       "backgroundColor": "#000000"
     }
   }
