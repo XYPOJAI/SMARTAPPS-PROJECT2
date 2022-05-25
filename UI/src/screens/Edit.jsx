@@ -69,7 +69,6 @@ export default function Edit() {
   const navigation = useNavigation();
   const route = useRoute();
   let u = route.params;
-
   const onSubmit = (data) => {
     // add user
     console.log(JSON.stringify(data));

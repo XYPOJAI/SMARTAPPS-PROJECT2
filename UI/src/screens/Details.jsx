@@ -11,7 +11,7 @@ import {
   useColorModeValue,
   VStack,
 } from "native-base";
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 
 const FormInput = (props) => {
   return (
@@ -51,8 +51,16 @@ const CustomForm = (props) => {
 export default function Details() {
   const navigation = useNavigation();
   const route = useRoute();
-  let profile = route.params;
-  console.log(profile);
+  const [profile, setProfile] = useState(route.params);
+  // console.log(route.params.profile);
+  // console.log(route.params);
+
+  useEffect(() => {
+    if (profile != route.params) {
+      setProfile(route.params);
+    }
+  }, [route.params]);
+
   // Add toasts
   // if (!toast.isActive(id)) {
   //   toast.show({
@@ -87,7 +95,7 @@ export default function Details() {
           },
         }}
       >
-        {({ handleBlur, values }) => (
+        {({ handleBlur, values, handleReset }) => (
           <VStack safeArea mx="3" p="2" py="8" w="90%" maxW="300px">
             <FormControl>
               <VStack space={3} mt="5">
@@ -106,18 +114,18 @@ export default function Details() {
                 </Stack>
 
                 {/* Id Name Phone Department Address: Street City State ZIP Country */}
-                <CustomForm label="ID" id="id" value={values.id} />
+                <CustomForm label="ID" id="id" value={profile.id} />
                 <InputGroup>
                   <CustomForm
                     label="First Name"
                     id="firstName"
-                    value={values.firstName}
+                    value={profile.firstName}
                     w="45%"
                   />
                   <CustomForm
                     label="Last Name"
                     id="lastName"
-                    value={values.lastName}
+                    value={profile.lastName}
                     w="55%"
                   />
                 </InputGroup>
@@ -126,12 +134,12 @@ export default function Details() {
                   label="Phone"
                   id="phone"
                   type="number"
-                  value={values.phone}
+                  value={profile.phone}
                 />
                 <CustomForm
                   label="Department"
                   id="department"
-                  value={values.department}
+                  value={profile.department}
                 />
                 <FormControl
                 //Address: Street City State ZIP Country
@@ -146,7 +154,7 @@ export default function Details() {
                       name={"Street"}
                       type={"text"}
                       w="60%"
-                      value={values.address.street}
+                      value={profile.address.street}
                     />
                     <FormInput
                       readonly
@@ -154,7 +162,7 @@ export default function Details() {
                       name={"City"}
                       type={"text"}
                       w="40%"
-                      value={values.address.city}
+                      value={profile.address.city}
                     />
                   </InputGroup>
                   <InputGroup readonly>
@@ -163,7 +171,7 @@ export default function Details() {
                       name={"State"}
                       type={"text"}
                       w="40%"
-                      value={values.address.state}
+                      value={profile.address.state}
                       readonly
                     />
                     <FormInput
@@ -172,7 +180,7 @@ export default function Details() {
                       name={"ZIP"}
                       type={"text"}
                       w="20%"
-                      value={values.address.ZIP}
+                      value={profile.address.ZIP}
                     />
                     <FormInput
                       readonly
@@ -180,7 +188,7 @@ export default function Details() {
                       name={"Country"}
                       type={"text"}
                       w="40%"
-                      value={values.address.country}
+                      value={profile.address.country}
                     />
                   </InputGroup>
                 </FormControl>
@@ -197,7 +205,9 @@ export default function Details() {
                   _hover={{ bg: "ROI.BurntOrange" }}
                   _pressed={{ bg: "ROI.BurntOrange" }}
                   type="submit"
-                  onPress={() => navigation.navigate("Edit", profile)}
+                  onPress={() => {
+                    navigation.navigate("Edit", profile);
+                  }}
                 >
                   Edit
                 </Button>
@@ -207,7 +217,9 @@ export default function Details() {
                   _hover={{ bg: "ROI.BurntOrange" }}
                   _pressed={{ bg: "ROI.BurntOrange" }}
                   type="submit"
-                  onPress={() => navigation.goBack()}
+                  onPress={() => {
+                    navigation.goBack();
+                  }}
                 >
                   Back
                 </Button>

@@ -12,13 +12,13 @@ export default function SearchModal({ showModal, setShowModal }) {
   useEffect(() => {
     getProfilesAsync().then((json) => setProfiles(json));
   }, [showModal]);
-
   function search() {
     let profile = profiles.find(
       (p) => p.firstName.toLowerCase() == input.toLowerCase()
     );
     if (profile == undefined) {
       // error not found
+      setShowModal(false);
       return;
     }
     setShowModal(false);

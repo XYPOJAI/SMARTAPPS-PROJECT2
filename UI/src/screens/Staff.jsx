@@ -22,6 +22,7 @@ export default function Staff() {
   const [profiles, setProfiles] = useState([]);
   // getProfilesAsync().then((json) => setProfiles(json));
   // Effect
+
   useEffect(() => {
     switch (route.params?.op) {
       case undefined:
@@ -47,6 +48,8 @@ export default function Staff() {
         break;
     }
   }, [route.params]);
+
+  console.log(profiles);
   return (
     <Center
       bg={useColorModeValue("#D9D9D9", "#595959")}
@@ -59,13 +62,16 @@ export default function Staff() {
       <Heading my={6} textAlign="center" size="lg">
         Staff list
       </Heading>
-      {!profiles.length ? <Text>No profiles found</Text> : <></>}
-      <FlatList
-        w="70%"
-        data={profiles}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Profile profile={item} />}
-      />
+      {!profiles.length ? (
+        <Text>No profiles found</Text>
+      ) : (
+        <FlatList
+          w="70%"
+          data={profiles}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <Profile profile={item} />}
+        />
+      )}
       <Button.Group w="70%" my={2}>
         <Button
           w="50%"

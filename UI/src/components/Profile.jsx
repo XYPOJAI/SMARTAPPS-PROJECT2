@@ -55,6 +55,8 @@ export default function Profile({ profile }) {
 
   //   </Box>
   // )
+  console.log("SOOSOSOOSOSOSOSOOSOSOSOSOSO");
+  console.log(profile);
   return (
     <Box w="100%" borderColor="black" borderWidth="1px" borderRadius={10}>
       <Pressable
