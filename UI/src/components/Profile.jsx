@@ -45,10 +45,17 @@ export default function Profile({ profile }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const onClose = () => setIsOpen(false);
-  const onDelete = () => {
+  const onDelete = async () => {
     setIsOpen(false);
-    deleteProfilesAsyncById(profile.id);
+    let res = await deleteProfilesAsyncById(profile.id);
+    console.log("DEDEDEDEDEDED");
+    console.log(res);
+    if (res == undefined || res.status == 404) {
+      navigation.navigate("Staff", { op: "fail" });
+      return;
+    }
     navigation.navigate("Staff", { op: "delete", id: profile.id });
+
   };
 
   const cancelRef = React.useRef(null);
@@ -61,8 +68,8 @@ export default function Profile({ profile }) {
 
   //   </Box>
   // )
-  console.log("SOOSOSOOSOSOSOSOOSOSOSOSOSO");
-  console.log(profile);
+  // console.log("SOOSOSOOSOSOSOSOOSOSOSOSOSO");
+  // console.log(profile);
   return (
     <Box w="100%" borderColor="black" borderWidth="1px" borderRadius={10}>
       <Pressable

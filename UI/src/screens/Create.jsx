@@ -69,12 +69,19 @@ const CustomForm = (props) => {
 export default function Create() {
   const navigation = useNavigation();
   navigation.closeDrawer();
+
   const onSubmit = async (data) => {
     // add user
     console.log(JSON.stringify(data));
     console.log("submitting with ", data);
-    await createProfileAsync(data);
-    return { op: "create", data: data };
+    let res = await createProfileAsync(data);
+    if (res == undefined) {
+      navigation.navigate("Staff", { op: "fail" });
+      return;
+    }
+    navigation.navigate("Staff", { op: "create", data: data });
+
+    // return { op: "create", data: data };
     // Add toasts
     // if (!toast.isActive(id)) {
     //   toast.show({
@@ -82,7 +89,6 @@ export default function Create() {
     //     title: "Hey! You can't create a duplicate toast"
     //   });
     // }
-    // navigation.navigate("Staff", { data });
   };
 
   return (
@@ -93,7 +99,7 @@ export default function Create() {
       // minW={250}
       w="100%"
       // h="100%"
-      safeArea
+      // safeArea
     >
       <Formik
         initialValues={{

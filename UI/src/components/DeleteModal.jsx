@@ -8,7 +8,14 @@ export default function DeleteModal({ showModal, setShowModal }) {
   const route = useRoute();
   function Delete() {
     console.log(route.profile.id);
-    deleteProfilesAsyncById(route.profile.id);
+    let res = deleteProfilesAsyncById(route.profile.id);
+    console.log("DEDEDEDEDEDED");
+    console.log(res);
+    if (res == undefined) {
+      navigation.navigate("Staff", { op: "fail" });
+      return;
+    }
+    navigation.navigate("Staff", { op: "delete", data: route.profile });
   }
   return (
     <Center>

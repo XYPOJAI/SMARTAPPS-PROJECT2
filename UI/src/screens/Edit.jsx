@@ -76,6 +76,10 @@ export default function Edit() {
     console.log("submitting with ", data);
     updateProfileAsync(data).then((json) => {
       let params = { op: "update", data: data };
+      if (json == undefined) {
+        navigation.navigate("Staff", { op: "fail" });
+        return;
+      }
       navigation.navigate("Staff", params);
     });
     // Add toasts

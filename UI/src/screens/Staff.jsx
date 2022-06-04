@@ -2,12 +2,14 @@
 // import { Center, Heading, ScrollView, VStack } from "native-base";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
+  Box,
   Button,
   Center,
   FlatList,
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from "native-base";
 import React, { useEffect, useState } from "react";
 import Profile from "./../components/Profile";
@@ -18,24 +20,38 @@ export default function Staff() {
   const navigation = useNavigation();
   navigation.closeDrawer();
 
+  const toast = useToast();
   const route = useRoute();
   // State
   const [profiles, setProfiles] = useState([]);
   // getProfilesAsync().then((json) => setProfiles(json));
   // Effect
 
-  useEffect(() => {
+  useEffect(async () => {
     switch (route.params?.op) {
       case undefined:
         // get profiles
-        getProfilesAsync()
-          .then((json) => setProfiles(json))
-          .catch((e) => console.error(e));
+        let res = await getProfilesAsync();
+        if (res == undefined) {
+          navigation.navigate("Staff", { op: "fail" });
+          return;
+        }
+        setProfiles(res);
+        // navigation.navigate("Staff", { op: "fail" });
         break;
       case "create":
         // setProfiles to current profiles
         console.log("loading with ", route.params.data);
         setProfiles([...profiles, route.params.data]);
+        toast.show({
+          render: () => {
+            return (
+              <Box bg="emerald.500" px="2" py="1" rounded="sm" mb={5}>
+                Successfully created
+              </Box>
+            );
+          },
+        });
         break;
       case "update":
         // setProfiles to current profiles
@@ -44,10 +60,39 @@ export default function Staff() {
             u.id == route.params.data.id ? route.params.data : u
           )
         );
+        toast.show({
+          render: () => {
+            return (
+              <Box bg="emerald.500" px="2" py="1" rounded="sm" mb={5}>
+                Successfully updated
+              </Box>
+            );
+          },
+        });
         break;
       case "delete":
         // setProfiles to current profiles
         setProfiles(profiles.filter((u) => u.id !== route.params.id));
+        toast.show({
+          render: () => {
+            return (
+              <Box bg="emerald.500" px="2" py="1" rounded="sm" mb={5}>
+                Successfully deleted
+              </Box>
+            );
+          },
+        });
+        break;
+      case "fail":
+        toast.show({
+          render: () => {
+            return (
+              <Box bg="danger.700" px="2" py="1" rounded="sm" mb={5}>
+                Something went wrong.
+              </Box>
+            );
+          },
+        });
         break;
     }
   }, [route.params]);

@@ -41,9 +41,12 @@ export function deleteProfileAsync(data) {
 }
 
 export function deleteProfilesAsyncById(id) {
-  return fetch(`https://enigmatic-ocean-67483.herokuapp.com/profiles/${id}`, {
-    method: "DELETE",
-  })
-    .then((response) => response.json())
-    .catch((e) => console.error(e));
+  return (
+    fetch(`https://enigmatic-ocean-67483.herokuapp.com/profiles/${id}`, {
+      method: "DELETE",
+    })
+      // .then((response) => response.json())
+      .then((response) => response)
+      .catch((e) => console.error(e))
+  );
 }

@@ -7,12 +7,10 @@ import { theme } from "./src/theme";
 export default function App() {
   console.log("App started");
   return (
-    <>
-      <NavigationContainer>
-        <NativeBaseProvider theme={theme} bg="red">
-          <ScreenNavigator />
-        </NativeBaseProvider>
-      </NavigationContainer>
-    </>
+    <NavigationContainer>
+      <NativeBaseProvider theme={theme}>
+        <ScreenNavigator />
+      </NativeBaseProvider>
+    </NavigationContainer>
   );
 }
