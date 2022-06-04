@@ -1,11 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider } from "native-base";
-import React, { useEffect } from "react";
+import React from "react";
 import ScreenNavigator from "./src/Navigation/Navigator";
 import { theme } from "./src/theme";
-import { getProfilesAsync } from "./src/users.service";
 
 export default function App() {
+  console.log("App started");
   return (
     <>
       <NavigationContainer>

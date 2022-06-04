@@ -31,6 +31,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-avatar-generator": "^1.0.2",
     "react-native-gesture-handler": "~2.2.1",
     "react-native-personas-avatar": "^1.0.0",
     "react-native-reanimated": "~2.8.0",
@@ -38,8 +39,8 @@
     "react-native-screens": "~3.11.1",
     "react-native-svg": "12.3.0",
     "react-native-swipe-list-view": "^3.2.9",
+    "react-native-user-avatar": "^1.0.8",
     "react-native-web": "0.17.7",
-    "react-nice-avatar": "^1.2.4",
     "styled-components": "^5.3.5",
     "styled-system": "^5.1.5",
     "yup": "^0.32.11"

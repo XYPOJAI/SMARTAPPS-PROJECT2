@@ -19,6 +19,8 @@ const width = Dimensions.get("screen").width;
 export default function ScreenNavigator() {
   const navigation = useNavigation();
   const { colorMode, toggleColorMode } = useColorMode();
+  console.log("Navigation");
+
   return (
     <Drawer.Navigator
       backBehavior="history"
@@ -26,13 +28,6 @@ export default function ScreenNavigator() {
       screenOptions={{
         drawerStyle: {
           backgroundColor: useColorModeValue("#D9D9D9", "#595959"),
-          // _dark: { bg: "#3b3b3b" },
-          // _light: { bg: "#D9D9D9" },
-          // width: "50%",
-          maxWidth: "200px",
-
-          // width: width - width / 4,
-          // drawerWidth: Dimensions.get("window").width,
         },
         header: (props) => (
           <AppBar colorModeToggle={toggleColorMode} {...props} />

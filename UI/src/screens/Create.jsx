@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import {
   Button,
   Center,
@@ -121,132 +121,131 @@ export default function Create() {
           errors,
           handleReset,
         }) => (
-          <Form onSubmit={onSubmit}>
-            <VStack safeArea mx="3" p="2" py="8" w="90%" maxW="300px">
-              <FormControl>
-                <VStack space={3} mt="5">
-                  <Stack>
-                    <Heading
-                      size="lg"
-                      fontWeight="600"
-                      color="coolGray.800"
-                      _dark={{
-                        color: "warmGray.50",
-                      }}
-                      // color={useColorModeValue("#D9D9D9", "#595959")} // Add text colors
-                    >
-                      Create a new employee profile
-                    </Heading>
-                  </Stack>
+          <VStack safeArea mx="3" p="2" py="8" w="90%" maxW="300px">
+            <FormControl>
+              <VStack space={3} mt="5">
+                <Stack>
+                  <Heading
+                    size="lg"
+                    fontWeight="600"
+                    color="coolGray.800"
+                    _dark={{
+                      color: "warmGray.50",
+                    }}
+                    // color={useColorModeValue("#D9D9D9", "#595959")} // Add text colors
+                  >
+                    Create a new employee profile
+                  </Heading>
+                </Stack>
 
-                  {/* Id Name Phone Department Address: Street City State ZIP Country */}
+                {/* Id Name Phone Department Address: Street City State ZIP Country */}
+                <CustomForm
+                  label="ID"
+                  id="id"
+                  placeholder="Enter ID here"
+                  isInvalid={"id" in errors}
+                  value={values.id}
+                  onChangeText={handleChange("id")}
+                />
+                <InputGroup>
                   <CustomForm
-                    label="ID"
-                    id="id"
-                    placeholder="Enter ID here"
-                    isInvalid={"id" in errors}
-                    value={values.id}
-                    onChangeText={handleChange("id")}
+                    label="First Name"
+                    id="firstName"
+                    placeholder="e.g. John"
+                    isInvalid={"firstName" in errors}
+                    value={values.firstName}
+                    onChangeText={handleChange("firstName")}
+                    w="45%"
                   />
+                  <CustomForm
+                    label="Last Name"
+                    id="lastName"
+                    placeholder="e.g. Doe"
+                    isInvalid={"lastName" in errors}
+                    value={values.lastName}
+                    onChangeText={handleChange("lastName")}
+                    w="55%"
+                  />
+                </InputGroup>
+                <CustomForm
+                  label="Phone"
+                  id="phone"
+                  placeholder="e.g. 000-000-0000"
+                  type="number"
+                  isInvalid={"phone" in errors}
+                  value={values.phone}
+                  onChangeText={handleChange("phone")}
+                />
+                <CustomForm
+                  label="Department"
+                  id="department"
+                  placeholder="e.g. department"
+                  isInvalid={"department" in errors}
+                  value={values.department}
+                  onChangeText={handleChange("department")}
+                />
+                <FormControl
+                //Address: Street City State ZIP Country
+                >
+                  <FormControl.Label htmlFor={"address"}>
+                    {"Address"}
+                  </FormControl.Label>
                   <InputGroup>
-                    <CustomForm
-                      label="First Name"
-                      id="firstName"
-                      placeholder="e.g. John"
-                      isInvalid={"firstName" in errors}
-                      value={values.firstName}
-                      onChangeText={handleChange("firstName")}
-                      w="45%"
+                    <FormInput
+                      id={"street"}
+                      name={"Street"}
+                      type={"text"}
+                      placeholder={"Street"}
+                      w="60%"
+                      isInvalid={"street" in errors}
+                      value={values.address.street}
+                      onChangeText={handleChange("address.street")}
                     />
-                    <CustomForm
-                      label="Last Name"
-                      id="lastName"
-                      placeholder="e.g. Doe"
-                      isInvalid={"lastName" in errors}
-                      value={values.lastName}
-                      onChangeText={handleChange("lastName")}
-                      w="55%"
+                    <FormInput
+                      id={"city"}
+                      name={"City"}
+                      type={"text"}
+                      placeholder={"City"}
+                      w="40%"
+                      isInvalid={"city" in errors}
+                      value={values.address.city}
+                      onChangeText={handleChange("address.city")}
                     />
                   </InputGroup>
-                  <CustomForm
-                    label="Phone"
-                    id="phone"
-                    placeholder="e.g. 000-000-0000"
-                    type="number"
-                    isInvalid={"phone" in errors}
-                    value={values.phone}
-                    onChangeText={handleChange("phone")}
-                  />
-                  <CustomForm
-                    label="Department"
-                    id="department"
-                    placeholder="e.g. department"
-                    isInvalid={"department" in errors}
-                    value={values.department}
-                    onChangeText={handleChange("department")}
-                  />
-                  <FormControl
-                  //Address: Street City State ZIP Country
-                  >
-                    <FormControl.Label htmlFor={"address"}>
-                      {"Address"}
-                    </FormControl.Label>
-                    <InputGroup>
-                      <FormInput
-                        id={"street"}
-                        name={"Street"}
-                        type={"text"}
-                        placeholder={"Street"}
-                        w="60%"
-                        isInvalid={"street" in errors}
-                        value={values.address.street}
-                        onChangeText={handleChange("address.street")}
-                      />
-                      <FormInput
-                        id={"city"}
-                        name={"City"}
-                        type={"text"}
-                        placeholder={"City"}
-                        w="40%"
-                        isInvalid={"city" in errors}
-                        value={values.address.city}
-                        onChangeText={handleChange("address.city")}
-                      />
-                    </InputGroup>
-                    <InputGroup>
-                      <FormInput
-                        id={"state"}
-                        name={"State"}
-                        type={"text"}
-                        placeholder={"State"}
-                        w="40%"
-                        isInvalid={"state" in errors}
-                        value={values.address.state}
-                        onChangeText={handleChange("address.state")}
-                      />
-                      <FormInput
-                        id={"ZIP"}
-                        name={"ZIP"}
-                        type={"text"}
-                        placeholder={"ZIP"}
-                        w="20%"
-                        isInvalid={"ZIP" in errors}
-                        value={values.address.ZIP}
-                        onChangeText={handleChange("address.ZIP")}
-                      />
-                      <FormInput
-                        id={"country"}
-                        name={"Country"}
-                        type={"text"}
-                        placeholder={"Country"}
-                        w="40%"
-                        isInvalid={"country" in errors}
-                        value={values.address.country}
-                        onChangeText={handleChange("address.country")}
-                      />
-                    </InputGroup>
-                  </FormControl>
-                  {/* {"name" in errors ? (
+                  <InputGroup>
+                    <FormInput
+                      id={"state"}
+                      name={"State"}
+                      type={"text"}
+                      placeholder={"State"}
+                      w="40%"
+                      isInvalid={"state" in errors}
+                      value={values.address.state}
+                      onChangeText={handleChange("address.state")}
+                    />
+                    <FormInput
+                      id={"ZIP"}
+                      name={"ZIP"}
+                      type={"text"}
+                      placeholder={"ZIP"}
+                      w="20%"
+                      isInvalid={"ZIP" in errors}
+                      value={values.address.ZIP}
+                      onChangeText={handleChange("address.ZIP")}
+                    />
+                    <FormInput
+                      id={"country"}
+                      name={"Country"}
+                      type={"text"}
+                      placeholder={"Country"}
+                      w="40%"
+                      isInvalid={"country" in errors}
+                      value={values.address.country}
+                      onChangeText={handleChange("address.country")}
+                    />
+                  </InputGroup>
+                </FormControl>
+                {/* {"name" in errors ? (
               <FormControl.ErrorMessage>Error</FormControl.ErrorMessage>
             ) : (
               <FormControl.HelperText>
@@ -254,39 +253,38 @@ export default function Create() {
               </FormControl.HelperText>
             )} */}
 
-                  <Button
-                    bg="ROI.LightOrange"
-                    _hover={{ bg: "ROI.BurntOrange" }}
-                    _pressed={{ bg: "ROI.BurntOrange" }}
-                    type="submit"
-                    onPress={async () => {
-                      let params = await onSubmit(values);
-                      // await handleSubmit();
-                      // values = clearValues(values);
-                      handleReset();
+                <Button
+                  bg="ROI.LightOrange"
+                  _hover={{ bg: "ROI.BurntOrange" }}
+                  _pressed={{ bg: "ROI.BurntOrange" }}
+                  type="submit"
+                  onPress={async () => {
+                    let params = await onSubmit(values);
+                    // await handleSubmit();
+                    // values = clearValues(values);
+                    handleReset();
 
-                      navigation.navigate("Staff", params);
-                    }}
-                  >
-                    Submit
-                  </Button>
+                    navigation.navigate("Staff", params);
+                  }}
+                >
+                  Submit
+                </Button>
 
-                  <Button
-                    bg="ROI.LightOrange"
-                    _hover={{ bg: "ROI.BurntOrange" }}
-                    _pressed={{ bg: "ROI.BurntOrange" }}
-                    type="submit"
-                    onPress={() => {
-                      handleReset();
-                      navigation.goBack();
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                </VStack>
-              </FormControl>
-            </VStack>
-          </Form>
+                <Button
+                  bg="ROI.LightOrange"
+                  _hover={{ bg: "ROI.BurntOrange" }}
+                  _pressed={{ bg: "ROI.BurntOrange" }}
+                  type="submit"
+                  onPress={() => {
+                    handleReset();
+                    navigation.goBack();
+                  }}
+                >
+                  Cancel
+                </Button>
+              </VStack>
+            </FormControl>
+          </VStack>
         )}
       </Formik>
     </Center>

@@ -11,7 +11,7 @@ export default function SearchModal({ showModal, setShowModal }) {
   const [profiles, setProfiles] = useState([]);
   useEffect(() => {
     getProfilesAsync().then((json) => setProfiles(json));
-  }, [showModal]);
+  }, []);
   function search() {
     let profile = profiles.find(
       (p) => p.firstName.toLowerCase() == input.toLowerCase()

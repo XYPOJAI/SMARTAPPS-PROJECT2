@@ -27,7 +27,8 @@ export default function Staff() {
     switch (route.params?.op) {
       case undefined:
         // get profiles
-        getProfilesAsync().then((json) => setProfiles(json));
+        getProfilesAsync().then((json) => setProfiles(json))
+           .catch((e) => console.error(e));
         break;
       case "create":
         // setProfiles to current profiles

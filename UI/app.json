@@ -15,7 +15,6 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "favicon": "./assets/favicon-16x16.png",
       "supportsTablet": true,
       "backgroundColor": "#000000"
     },
@@ -24,7 +23,6 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "favicon": "./assets/favicon-16x16.png",
       "backgroundColor": "#000000",
       "package": "com.xypo.ROI"
     },

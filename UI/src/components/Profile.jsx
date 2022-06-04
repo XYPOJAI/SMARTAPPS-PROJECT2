@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Dimensions } from 'react-native';
 import {
   AlertDialog,
   Avatar as NativeAvatar,
@@ -15,8 +16,10 @@ import {
   useColorModeValue,
 } from "native-base";
 import React from "react";
+import UserAvatar from 'react-native-user-avatar';
 // import { PersonasAvatar } from "react-native-personas-avatar";
-import Avatar, { genConfig } from "react-nice-avatar";
+// import { PersonasAvatar } from "react-native-personas-avatar";
+// import Avatar, { genConfig } from "react-nice-avatar";
 import { deleteProfilesAsyncById } from "./../users.service";
 
 function ProfileButton({ icon, onPress }) {
@@ -34,9 +37,10 @@ function ProfileButton({ icon, onPress }) {
   );
 }
 
+
 export default function Profile({ profile }) {
   const navigation = useNavigation();
-  const config = genConfig();
+  // const config = genConfig();
 
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -48,6 +52,8 @@ export default function Profile({ profile }) {
   };
 
   const cancelRef = React.useRef(null);
+
+  let name = `${profile.firstName} ${profile.lastName}`;
   // console.count();
   // return (
   //   <Box>
@@ -80,14 +86,21 @@ export default function Profile({ profile }) {
         <Box w="100%" p={1}>
           <HStack w="100%" alignItems="center">
             <NativeAvatar
-              bg="lightBlue.400"
+              bg="transparent"
               source={{
                 uri: profile.uri ?? "",
               }}
               minW={3}
               mr={3}
             >
-              <Avatar style={{ width: "3rem", height: "3rem" }} {...config} />
+              <UserAvatar size={45} name={name} />
+              {/* <PersonasAvatar
+                style={{
+                  width: 200,
+                  height: 200,
+                }}
+              /> */}
+              {/* <Avatar style={{ width: "3rem", height: "3rem" }} {...config} /> */}
             </NativeAvatar>
             <Box maxW="40%" m={0}>
               <Text
@@ -104,7 +117,8 @@ export default function Profile({ profile }) {
             <Flex
               wrap="wrap"
               justifySelf="flex-end"
-              direction={["column", "row"]}
+              // direction={["column", "row", "row"]}
+              direction={(Dimensions.get('window').width < 400) ? "column" : "row"}
               ml={0}
             >
               <ProfileButton
