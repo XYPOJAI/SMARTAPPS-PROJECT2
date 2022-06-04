@@ -89,7 +89,7 @@ export default function Create() {
     <Center
       bg={useColorModeValue("#D9D9D9", "#595959")}
       // px={4}
-      // flex={1}
+      flex={1}
       // minW={250}
       w="100%"
       // h="100%"
