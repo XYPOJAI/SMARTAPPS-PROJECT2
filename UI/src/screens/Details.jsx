@@ -50,6 +50,7 @@ const CustomForm = (props) => {
 
 export default function Details() {
   const navigation = useNavigation();
+  // navigation.closeDrawer();
   const route = useRoute();
   const [profile, setProfile] = useState(route.params);
   // console.log(route.params.profile);

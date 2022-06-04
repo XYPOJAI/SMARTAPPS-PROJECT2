@@ -14,7 +14,7 @@ import BadIcon from "../components/Icon/BadIcon";
 import GoodIcon from "./../components/Icon/GoodIcon";
 export default function Settings(props) {
   const navigation = useNavigation();
-
+  navigation.closeDrawer();
   return (
     <Center
       alignItems="center"

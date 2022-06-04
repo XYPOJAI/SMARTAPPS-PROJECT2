@@ -68,7 +68,7 @@ const CustomForm = (props) => {
 
 export default function Create() {
   const navigation = useNavigation();
-
+  navigation.closeDrawer();
   const onSubmit = async (data) => {
     // add user
     console.log(JSON.stringify(data));

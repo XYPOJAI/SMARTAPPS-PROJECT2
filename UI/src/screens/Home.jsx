@@ -9,13 +9,15 @@ import {
 } from "native-base";
 import React, { useEffect } from "react";
 import BadIcon from "../components/Icon/BadIcon";
+import { getProfilesAsync } from "../users.service";
 
 // import RoiIcon from "./../components/Icon/Icon";
 
 export default function Home(props) {
   const navigation = useNavigation();
+  navigation.closeDrawer();
   useEffect(() => {
-    // getProfilesAsync();
+    getProfilesAsync();
   }, []);
   return (
     // <Center

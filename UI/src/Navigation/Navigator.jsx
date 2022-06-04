@@ -34,6 +34,7 @@ export default function ScreenNavigator() {
         ),
       }}
       defaultStatus="closed"
+      useLegacyImplementation="true"
     >
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Staff" component={Staff} />

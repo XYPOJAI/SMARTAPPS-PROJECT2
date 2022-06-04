@@ -46,6 +46,7 @@ function DrawerContent(props) {
       // }
       bg={useColorModeValue("ROI.White", "ROI.MidGrey")}
       onPress={(event) => {
+        props.navigation.closeDrawer();
         props.navigation.navigate(props.name);
       }}
     >

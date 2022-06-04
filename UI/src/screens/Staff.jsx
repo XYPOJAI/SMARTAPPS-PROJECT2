@@ -16,8 +16,9 @@ import { getProfilesAsync } from "./../users.service";
 export default function Staff() {
   // Navigation
   const navigation = useNavigation();
-  const route = useRoute();
+  navigation.closeDrawer();
 
+  const route = useRoute();
   // State
   const [profiles, setProfiles] = useState([]);
   // getProfilesAsync().then((json) => setProfiles(json));
@@ -27,8 +28,9 @@ export default function Staff() {
     switch (route.params?.op) {
       case undefined:
         // get profiles
-        getProfilesAsync().then((json) => setProfiles(json))
-           .catch((e) => console.error(e));
+        getProfilesAsync()
+          .then((json) => setProfiles(json))
+          .catch((e) => console.error(e));
         break;
       case "create":
         // setProfiles to current profiles

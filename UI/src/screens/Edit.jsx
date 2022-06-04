@@ -67,6 +67,7 @@ const CustomForm = (props) => {
 
 export default function Edit() {
   const navigation = useNavigation();
+  navigation.closeDrawer();
   const route = useRoute();
   let u = route.params;
   const onSubmit = (data) => {
