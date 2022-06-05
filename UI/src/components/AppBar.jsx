@@ -11,6 +11,7 @@ import {
   useTheme,
 } from "native-base";
 import React, { useState } from "react";
+import { Platform } from "react-native";
 import SearchModal from "./SearchModal";
 const TitleIconButton = (props) => {
   const { colors } = useTheme();
@@ -52,7 +53,7 @@ export default function AppBar(props) {
       <StatusBar style="light" />
       <Box
         // h={0}
-        pt={10}
+        pt={Platform.OS === "android" ? 10 : 0}
         bg="#000"
       ></Box>
       <HStack

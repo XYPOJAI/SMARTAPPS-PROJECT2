@@ -13,10 +13,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "backgroundColor": "#000000"
+      "backgroundColor": "#000000",
+      "bundleIdentifier": "com.xypo.ROI"
     },
     "android": {
       "adaptiveIcon": {
