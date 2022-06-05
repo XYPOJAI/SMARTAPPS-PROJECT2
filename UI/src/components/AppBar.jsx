@@ -1,11 +1,11 @@
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { getHeaderTitle } from "@react-navigation/elements";
+import { StatusBar } from "expo-status-bar";
 import {
   Box,
   HStack,
   Icon,
   IconButton,
-  StatusBar,
   Text,
   useColorModeValue,
   useTheme,
@@ -43,13 +43,18 @@ export default function AppBar(props) {
   const toggleColorMode = props.colorModeToggle;
 
   const [showModal, setShowModal] = useState(false);
-
+  // console.log(getDefaultHeaderHeight());
+  // console.log(statusBarHeight);
   const iconSize = ["lg"];
   // navigation = props.navigation;
   return (
     <>
-      <StatusBar bg="#fff" barStyle="light-content" />
-      <Box safeAreaTop bg="#fff" />
+      <StatusBar style="light" />
+      <Box
+        // h={0}
+        pt={10}
+        bg="#000"
+      ></Box>
       <HStack
         // bg={props.headerStyle.backgroundColor}
         _dark={{ bg: "ROI.MidGrey" }}

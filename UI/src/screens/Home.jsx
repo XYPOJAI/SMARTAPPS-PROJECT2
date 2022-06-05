@@ -40,7 +40,7 @@ export default function Home(props) {
       flex={1}
       minW={250}
       w="100%"
-      safeArea
+      pb={10}
     >
       {/* <Box h={["100", "110"]}></Box> */}
       <BadIcon w={"100%"} height={"100%"} my={1} />

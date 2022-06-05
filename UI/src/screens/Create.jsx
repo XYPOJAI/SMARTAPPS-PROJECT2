@@ -100,6 +100,7 @@ export default function Create() {
       w="100%"
       // h="100%"
       // safeArea
+      pb={10}
     >
       <Formik
         initialValues={{
@@ -129,7 +130,7 @@ export default function Create() {
         }) => (
           <VStack safeArea mx="3" p="2" py="8" w="90%" maxW="300px">
             <FormControl>
-              <VStack space={3} mt="5">
+              <VStack space={3} mt="1">
                 <Stack>
                   <Heading
                     size="lg"

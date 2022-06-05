@@ -105,7 +105,7 @@ export default function Staff() {
       flex={1}
       minW={250}
       w="100%"
-      safeArea
+      // pb={10}
     >
       <Heading my={6} textAlign="center" size="lg">
         Staff list

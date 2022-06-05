@@ -1,6 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Constants from "expo-constants";
 import { useColorMode, useColorModeValue } from "native-base";
 import * as React from "react";
 import { Dimensions } from "react-native";
@@ -20,6 +21,7 @@ export default function ScreenNavigator() {
   const navigation = useNavigation();
   const { colorMode, toggleColorMode } = useColorMode();
   console.log("Navigation");
+  console.log(Constants.statusBarHeight);
 
   return (
     <Drawer.Navigator
@@ -29,9 +31,15 @@ export default function ScreenNavigator() {
         drawerStyle: {
           backgroundColor: useColorModeValue("#D9D9D9", "#595959"),
         },
+        // headerStyle: {
+        //   // marginTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
+        //   marginTop: 100,
+        // },
         header: (props) => (
           <AppBar colorModeToggle={toggleColorMode} {...props} />
         ),
+        // headerMode: "screen",
+        // headerShown: false,
       }}
       defaultStatus="closed"
       useLegacyImplementation="true"

@@ -1,17 +1,14 @@
 import { useNavigation } from "@react-navigation/native";
 import {
-  Box,
   Button,
   Center,
-  Heading,
   Divider,
+  Heading,
   HStack,
   useColorModeValue,
   VStack,
 } from "native-base";
-import React, { useEffect } from "react";
-import BadIcon from "../components/Icon/BadIcon";
-import GoodIcon from "./../components/Icon/GoodIcon";
+import React from "react";
 export default function Settings(props) {
   const navigation = useNavigation();
   navigation.closeDrawer();
@@ -24,7 +21,7 @@ export default function Settings(props) {
       flex={1}
       minW={250}
       w="100%"
-      safeArea
+      pb={10}
     >
       {/* <Box h={["100", "110"]}></Box> */}
       {/* <BadIcon w={"100%"} height={"100%"} my={1} /> */}
@@ -34,14 +31,15 @@ export default function Settings(props) {
           Theres nothing here
         </Heading>
         <HStack space={2} alignItems="center">
-        <Divider 
-          my="2" 
-          _light={{
-            bg: "muted.800"
-          }} 
-          _dark={{
-            bg: "muted.50"
-          }} />
+          <Divider
+            my="2"
+            _light={{
+              bg: "muted.800",
+            }}
+            _dark={{
+              bg: "muted.50",
+            }}
+          />
         </HStack>
 
         <Button
@@ -68,7 +66,6 @@ export default function Settings(props) {
         >
           Create new profile
         </Button>
-        
       </VStack>
     </Center>
   );
